@@ -9,19 +9,35 @@ class Appbody extends StatefulWidget {
 }
 
 class _AppbodyState extends State<Appbody> {
+  int currentIndex = 0;
+  final List<Widget> pages = [
+    Text("Home"),
+    Text("Profile"),
+  ];
+
+  void onToapMethod(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(
-          icon: Icon(AntDesign.profile_fill),
-          label: "Home",
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Iconsax.profile_2user_bold),
-          label: "Profile",
-        ),
-      ]),
+      body: Center(child: pages[currentIndex]),
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: onToapMethod,
+          currentIndex: currentIndex,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(AntDesign.profile_fill),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Iconsax.profile_2user_bold),
+              label: "Profile",
+            ),
+          ]),
     );
   }
 }
